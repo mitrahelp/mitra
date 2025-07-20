@@ -1,0 +1,73 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3f4f6;
+}
+.dashboard-container {
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+.dashboard-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #b91c1c;
+}
+.card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+.btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  transition: background-color 0.2s;
+}
+.btn-blue {
+  background-color: #2563eb;
+}
+.btn-blue:hover {
+  background-color: #1d4ed8;
+}
+.btn-green {
+  background-color: #16a34a;
+}
+.btn-green:hover {
+  background-color: #15803d;
+}
+.btn-gray {
+  background-color: #4b5563;
+}
+.btn-gray:hover {
+  background-color: #374151;
+}
+
+/* MY Section */
+.flash-container {
+  margin: 1rem auto;
+  width: 80%;
+  text-align: center;
+}
+
+.flash-message {
+  background-color: #dff0d8;
+  color: #c62828;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  font-weight: bold;
+}
