@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MITRA Donor Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/dashboard.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  
+  <div class="dashboard-container">
+    <h1 class="dashboard-heading">Welcome, Donor!</h1>
+
+    <!-- Donor Profile -->
+    <div class="card">
+      <h2 class="card-title">Your Profile</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><strong>Name:</strong> {{ name }}</div>
+        <div><strong>Blood Group:</strong> {{ blood_type }}</div>
+        <div><strong>Location:</strong> {{ location }}</div>
+        <div><strong>Availability:</strong> <span class="text-green-600 font-semibold">{{ availability }}</span></div>
+        <div><strong>Last Donation:</strong> 10 Feb 2025</div>
+        <div><strong>Next Eligible Date:</strong> 10 June 2025</div>
+      </div>
+    </div>
+
+    <!-- Donation History -->
+    <div class="card">
+      <h2 class="card-title">Donation History</h2>
+      <table class="w-full table-auto">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700 text-left">
+            <th class="px-4 py-2">Date</th>
+            <th class="px-4 py-2">Location</th>
+            <th class="px-4 py-2">Recipient</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t">
+            <td class="px-4 py-2">10 Feb 2025</td>
+            <td class="px-4 py-2">AIIMS Delhi</td>
+            <td class="px-4 py-2">Rajesh Kumar</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-4 py-2">05 Nov 2024</td>
+            <td class="px-4 py-2">Fortis Hospital</td>
+            <td class="px-4 py-2">Neha Verma</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex flex-col md:flex-row gap-4">
+      <button class="btn btn-blue">Update Availability</button>
+      <button class="btn btn-green">Edit Profile</button>
+      <a class="btn btn-gray" href="/logout">Logout</a>
+    </div>
+  </div>
+
+  <script>
+    //  For flash message
+    function hideFlashMessages() {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(message => {
+          setTimeout(() => {
+            message.style.display = 'none';
+          }, 2500);
+        });
+      }
+      
+      window.onload = hideFlashMessages;
+  </script>
+</body>
+</html>

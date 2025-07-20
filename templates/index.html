@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITRA - Blood Donation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">MITRA</a>
+            <ul>
+                <li><a href="#" onclick="showSection('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showSection('register-donor')">Register as Donor</a></li>
+                <li><a href="#" onclick="showSection('request-blood')">Request Blood</a></li>
+                <li><a href="#" onclick="showSection('search-donors')">Search Donors</a></li>
+                <li><a href="#" onclick="showSection('login')">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Home Page -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Welcome to MITRA</h1>
+                <p>Uniting Heroes to Save Lives</p>
+                <p class="tagline">One donation can save up to three lives. Join the movement today!</p>
+                <button onclick="showSection('register-donor')">Become a Donor</button>
+                <button onclick="showSection('request-blood')">Request Blood</button>
+            </div>
+            <div class="image-div">
+                <div class="overlay">
+                    <div>
+                        <h1 style="color: orange;">" स्वस्थ विश्व की दिशा में एक कदम।"</h1>
+                        <h1 style="color: #fff;">یک سوئی صحت مند دنیا کی طرف۔ </h1>
+                        <h1 style="color: green;">"Striving for healthier world"</h1>
+                        <br>
+
+                        <h2>Be a Lifesaver</h2>
+                        <p>Your blood donation can make a difference. Register now to help those in need and become part of our life-saving community.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mission">
+                <h2>Our Mission</h2>
+                <p>MITRA is committed to connecting blood donors with patients in need, creating a seamless platform that promotes voluntary blood donation and ensures timely support for critical medical needs.</p>
+            </div>
+        </section>
+
+        <!-- Register as Donor Page -->
+        <section id="register-donor" class="section">
+            <h2>Register as a Blood Donor</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 2rem;">Join our community of lifesavers by registering as a blood donor today!</p>
+            <form id="donor-form" method="post" action="/register">
+                <div class="form-group">
+                    <label for="donor-name">Full Name</label>
+                    <input type="text" name="donor-name" id="donor-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="donor-age">Age</label>
+                    <input type="number" name="donor-age" id="donor-age" min="18" max="65" required>
+                </div>
+                <div class="form-group">
+                    <label for="donor-gender">Gender</label>
+                    <select id="donor-gender" name="donor-gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="donor-blood-group">Blood Group</label>
+                    <select id="donor-blood-group" name="donor-blood-group" required>
+                        <option value="">Select Blood Group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="donor-contact">Contact Number</label>
+                    <input type="tel" name="donor-contact" id="donor-contact" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label for="donor-location">Location (City)</label>
+                    <input type="text" name="donor-location" id="donor-location" required>
+                </div>
+                <div class="form-group">
+                    <label for="donor-availability">Availability</label>
+                    <select id="donor-availability" name="donor-availability" required>
+                        <option value="">Select Availability</option>
+                        <option value="Available">Available</option>
+                        <option value="Unavailable">Not Available</option>
+                    </select>
+                </div>
+                <button type="submit" onclick="showSection('credential')">Continue</button>
+            </form>
+        </section>
+
+        <!-- Credential Page -->
+        <section id="credential" class="section">
+            <h2>Register as a Blood Donor</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 2rem;">Enter Number OR Strong Password For Complete Registration.</p>
+            <form id="credential-form" action="/credential" method="post">
+                <div class="form-group">
+                    <label for="credential-email">NUMBER</label>
+                    <input type="text" name="number" id="credential-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="credential-password">PASSWORD</label>
+                    <input type="password" name="password" id="credential-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+
+        <!-- Request Blood Page -->
+        <section id="request-blood" class="section">
+            <h2>Request Blood</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 2rem;">Need blood urgently? Submit your request, and we'll connect you with available donors.</p>
+            <form id="request-form" action="/request_blood " method="post">
+                <div class="form-group">
+                    <label for="patient-name">Patient Name</label>
+                    <input type="text" id="patient-name" name="patient_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="blood-type">Blood Type Needed</label>
+                    <select id="blood-type" name="blood_type" required>
+                        <option value="">Select Blood Type</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Urgency Level</label>
+                    <select id="urgency" name="Urgency" required>
+                        <option value="">Select Urgency</option>
+                        <option value="Immediate">Immediate</option>
+                        <option value="Within 24 Hours">Within 24 Hours</option>
+                        <option value="Within 48 Hours">Within 48 Hours</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="request-location">Location (City)</label>
+                    <input type="text" name="location" id="request-location" required>
+                </div>
+                <div class="form-group">
+                    <label for="request-contact">Contact Number</label>
+                    <input type="tel" name="donor-contact" id="request-contact" pattern="[0-9]{10}" required>
+                </div>
+                <button type="submit">Submit Request</button>
+            </form>
+        </section>
+
+        <!-- Search Donors Page -->
+        <section id="search-donors" class="section">
+            <h2>Search Available Donors</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 2rem;">Find available blood donors in your area quickly and easily.</p>
+            <form id="search-form" method="post" action="/search_donors">
+                <div class="form-group">
+                    <label for="search-blood-type">Blood Type</label>
+                    <select id="search-blood-type" name="blood_type">
+                        <option value="">Any</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="search-location">Location (City)</label>
+                    <input type="text" name="location" id="search-location">
+                </div>
+                <button type="submit">Search</button>
+            </form>
+            <div id="donor-results" class="donor-grid"></div>
+            <div id="map"></div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login" class="section">
+            <h2>Login to MITRA</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 2rem;">Access your account to review insights of your profile.</p>
+            <form id="login-form" action="/login" method="post">
+                <div class="form-group">
+                    <label for="login-email">Number</label>
+                    <input type="text" id="login-number" name="login-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="login-password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>MITRA - Saving Lives Through Blood Donation</p>
+        <p>Contact us: <a href="mitrahelp21@gmail.com">mitrahelp21@gmail.com</a> | © 2025 MITRA</p>
+    </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="static/js/script.js"></script>
+</body>
+</html>
